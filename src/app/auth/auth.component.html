@@ -1,0 +1,35 @@
+<div class="example-container">
+    <form [formGroup]="form" (ngSubmit)="login()">
+        <mat-card class="example-card center">
+            <div class="center">
+                <div *ngIf="form.invalid">
+                    <mat-card class="examample-card center">Invalid username/password</mat-card>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill" class="example-full-width">
+                        <mat-label>Enter your username</mat-label>
+                        <input matInput type="text" name="username" formControlName="username">
+                    </mat-form-field>
+                </div>
+                <div *ngIf="username!.touched && username!.invalid">
+                    <mat-card *ngIf="username!.errors!.required" class="example-card center">Username is required</mat-card>    
+                </div>
+                <div>
+                    <mat-form-field appearance="fill" class="example-full-width">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="password!.touched && password!.invalid">
+                    <mat-card *ngIf="password!.errors!.required" class="example-card center">Password is required</mat-card>    
+                </div>
+                <div class="center">
+                    <button mat-raised-button color="primary" type="submit">Login</button>
+                </div>
+            </div>
+        </mat-card>
+    </form>
+</div>
